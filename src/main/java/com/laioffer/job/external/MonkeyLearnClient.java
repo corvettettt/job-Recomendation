@@ -19,16 +19,15 @@ import java.util.*;
 
 public class MonkeyLearnClient {
     private static final String EXTRACT_URL = "https://api.monkeylearn.com/v3/extractors/ex_YCya9nrn/extract/";
-    private static final String AUTH_TOKEN = "b4c9621a0920cda8247a837c3b166b114e4277bb";
+    private static final String AUTH_TOKEN = "0d2ca2692bc483ad49e1bfb201e0004a78ff6b7d";
 
     public List<Set<String>> extract(List<String> articles) {
         ObjectMapper mapper = new ObjectMapper();
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         HttpPost request = new HttpPost(EXTRACT_URL);
-        request.setHeader("Content-type","application/json");
-        request.setHeader("Authorization","Token"+ AUTH_TOKEN);
-
+        request.setHeader("Content-Type","application/json");
+        request.setHeader("Authorization","Token "+ AUTH_TOKEN);
         ExtractRequestBody body = new ExtractRequestBody(articles,3);
 
         String jsonBody;
@@ -44,8 +43,9 @@ public class MonkeyLearnClient {
         } catch (UnsupportedEncodingException e){
             return Collections.emptyList();
         }
-
+        //System.out.print(jsonBody);
         ResponseHandler<List<Set<String>>> responseHandler = response -> {
+            //System.out.println()
             if (response.getStatusLine().getStatusCode()!=200){
                 return Collections.emptyList();
             }
@@ -75,4 +75,19 @@ public class MonkeyLearnClient {
 
         return Collections.emptyList();
     }
+
+    public static void main(String[] args) {
+
+        List<String> articles = Arrays.asList(
+                "Elon Musk has shared a photo of the spacesuit designed by SpaceX. This is the second image shared of the new design and the first to feature the spacesuit’s full-body look.",
+                "Former Auburn University football coach Tommy Tuberville defeated ex-US Attorney General Jeff Sessions in Tuesday nights runoff for the Republican nomination for the U.S. Senate. ",
+                "The NEOWISE comet has been delighting skygazers around the world this month – with photographers turning their lenses upward and capturing it above landmarks across the Northern Hemisphere."
+        );
+
+        MonkeyLearnClient client = new MonkeyLearnClient();
+
+        List<Set<String>> keywordList = client.extract(articles);
+        System.out.println(keywordList);
+    }
+
 }

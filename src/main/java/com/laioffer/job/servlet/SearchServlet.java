@@ -21,8 +21,8 @@ public class SearchServlet extends HttpServlet {
         List<Item> items = client.search(lat, lon, null);
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
-        //mapper.writeValue(response.getWriter(),items);
-        response.getWriter().print(mapper.writeValueAsString(items));
+        mapper.writeValue(response.getWriter(),items);
+        //response.getWriter().print(mapper.writeValueAsString(items));
     }
 
     @Override

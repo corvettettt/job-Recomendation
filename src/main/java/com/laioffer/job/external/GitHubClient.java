@@ -13,9 +13,7 @@ import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class GitHubClient {
@@ -49,7 +47,12 @@ public class GitHubClient {
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            return Arrays.asList(mapper.readValue(entity.getContent(),Item[].class));
+
+            List<Item> items = Arrays.asList(mapper.readValue(entity.getContent(),Item[].class));
+            extractKeywords(items);
+
+            return items;
+            //return Arrays.asList(mapper.readValue(entity.getContent(),Item[].class));
 
             //return EntityUtils.toString(entity);//这里的entity是值得body吗？
         };
@@ -60,5 +63,19 @@ public class GitHubClient {
             e.printStackTrace();
         }
         return Collections.emptyList();
+    }
+
+    private static void extractKeywords(List<Item> items) {
+        MonkeyLearnClient monkeyLearnClient = new MonkeyLearnClient();
+        List<String> descriptions = new ArrayList<>();
+        for (Item item : items) {
+            String description = item.getDescription().replace("·"," ");
+
+            descriptions.add(description);
+        }
+        List<Set<String>> keywordList = monkeyLearnClient.extract(descriptions);
+        for (int i =0;i<items.size();i++){
+            items.get(i).setKeywords(keywordList.get(i));
+        }
     }
 }
