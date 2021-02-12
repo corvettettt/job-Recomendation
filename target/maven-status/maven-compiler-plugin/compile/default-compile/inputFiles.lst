@@ -1,3 +1,13 @@
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/external/GitHubClient.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/servlet/SearchServlet.java
 /Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/servlet/ExampleJobServlet.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/servlet/RecommendationServlet.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/ExtractResponseItem.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/ExampleJob.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/external/MonkeyLearnClient.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/Extraction.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/Item.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/ExampleCoordinates.java
 /Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/servlet/ExampleBookServlet.java
+/Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/entity/ExtractRequestBody.java
 /Users/Skaven/Documents/Laioffer/jupiter/src/main/java/com/laioffer/job/servlet/TestServlet.java
