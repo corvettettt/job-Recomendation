@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletRegisterServlet",  urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         RegisterRequestBody body = mapper.readValue(request.getReader(), RegisterRequestBody.class);
