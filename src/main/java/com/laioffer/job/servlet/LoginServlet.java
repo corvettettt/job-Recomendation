@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         MySQLConnection connection = new MySQLConnection();
         LoginResponseBody loginResponseBody;
         if (connection.verifyLogin(body.userId, body.password)) {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(); //create session and save it to server.
             session.setAttribute("user_id", body.userId);
             loginResponseBody = new LoginResponseBody("OK", body.userId, connection.getFullname(body.userId));
         } else {
