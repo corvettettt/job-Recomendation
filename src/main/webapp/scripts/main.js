@@ -22,11 +22,13 @@
         oNavBtnList = document.getElementsByClassName('main-nav-btn'),
         oItemNav = document.getElementById('item-nav'),
         oItemList = document.getElementById('item-list'),
-        oTpl = document.getElementById('tpl').innerHTML,
+        // oTpl = document.getElementById('tpl').innerHTML,
+
         userId = '1111',
         userFullName = 'John',
         lng = -122.08,
         lat = 37.38;
+
     // init
     function init() {
         validateSession();
@@ -46,7 +48,7 @@
         var username = oLoginUsername.value,
             password = oLoginPwd.value;
 
-        if (username === "" || password == "") {
+        if (username === "" || password === "") {
             oLoginErrorField.innerHTML = 'Please fill in all fields';
             return;
         }
@@ -64,7 +66,7 @@
             lastName = oRegisterLastName.value;
         console.log(username, password,firstName, lastName);
 
-        if (username === "" || password == "" || firstName === ""
+        if (username === "" || password === "" || firstName === ""
             || lastName === "") {
             oRegisterResultField.innerHTML = 'Please fill in all fields';
             return;
@@ -86,23 +88,20 @@
         // hide item list area
         showOrHideElement(oItemNav, 'none');
         showOrHideElement(oItemList, 'none');
-
-        if (name =='login'){
+        if (name ==='login'){
             showOrHideElement(oRegisterForm, 'none');
             // clear register error
             oRegisterResultField.innerHTML = ''
 
             showOrHideElement(oLoginForm, 'block');
+        } else {
+            showOrHideElement(oLoginForm, 'none');
+            // clear login error if existed
+            oLoginErrorField.innerHTML = '';
 
+            // show register form
+            showOrHideElement(oRegisterForm, 'block');
         }
-
-        showOrHideElement(oLoginForm, 'none');
-        // clear login error if existed
-        oLoginErrorField.innerHTML = '';
-
-        // show register form
-        showOrHideElement(oRegisterForm, 'block');
-
 
     }
 
