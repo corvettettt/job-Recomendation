@@ -43,7 +43,7 @@ public class SearchServlet extends HttpServlet {
         }
 
         response.setContentType("application/json");
-        mapper.writeValue(response.getWriter(),items);
+        mapper.writeValue(response.getWriter(), items);
         //response.getWriter().print(mapper.writeValueAsString(items));
     }
 

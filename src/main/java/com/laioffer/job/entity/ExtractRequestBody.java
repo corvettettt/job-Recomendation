@@ -10,7 +10,7 @@ public class ExtractRequestBody {
     @JsonProperty("max_keywords")
     public int maxKeywords;
 
-    public ExtractRequestBody(List<String> data, int maxKeywords){
+    public ExtractRequestBody(List<String> data, int maxKeywords) {
         this.data = data;
         this.maxKeywords = maxKeywords;
     }

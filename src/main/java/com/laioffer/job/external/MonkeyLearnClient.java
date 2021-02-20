@@ -26,50 +26,50 @@ public class MonkeyLearnClient {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         HttpPost request = new HttpPost(EXTRACT_URL);
-        request.setHeader("Content-Type","application/json");
-        request.setHeader("Authorization","Token "+ AUTH_TOKEN);
-        ExtractRequestBody body = new ExtractRequestBody(articles,3);
+        request.setHeader("Content-Type", "application/json");
+        request.setHeader("Authorization", "Token " + AUTH_TOKEN);
+        ExtractRequestBody body = new ExtractRequestBody(articles, 3);
 
         String jsonBody;
 
-        try{
+        try {
             jsonBody = mapper.writeValueAsString(body);
-        } catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             return Collections.emptyList();
         }
 
-        try{
+        try {
             request.setEntity(new StringEntity(jsonBody));
-        } catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             return Collections.emptyList();
         }
         //System.out.print(jsonBody);
         ResponseHandler<List<Set<String>>> responseHandler = response -> {
             //System.out.println()
-            if (response.getStatusLine().getStatusCode()!=200){
+            if (response.getStatusLine().getStatusCode() != 200) {
                 return Collections.emptyList();
             }
 
             HttpEntity entity = response.getEntity();
-            if (entity== null){
+            if (entity == null) {
                 return Collections.emptyList();
             }
 
-            ExtractResponseItem[] results = mapper.readValue(entity.getContent(),ExtractResponseItem[].class);
+            ExtractResponseItem[] results = mapper.readValue(entity.getContent(), ExtractResponseItem[].class);
 
             List<Set<String>> keywordList = new ArrayList<>();
-            for (ExtractResponseItem result : results){
+            for (ExtractResponseItem result : results) {
                 Set<String> keyword = new HashSet<>();
-                for (Extraction extraction : result.extractions){
+                for (Extraction extraction : result.extractions) {
                     keyword.add(extraction.parsedValue);
                 }
                 keywordList.add(keyword);
             }
             return keywordList;
         };
-        try{
-            return httpClient.execute(request,responseHandler);
-        } catch (IOException e){
+        try {
+            return httpClient.execute(request, responseHandler);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

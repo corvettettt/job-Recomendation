@@ -30,8 +30,8 @@ public class MySQLConnection {
         }
     }
 
-    public void saveItem(Item item){
-        if (conn==null){
+    public void saveItem(Item item) {
+        if (conn == null) {
             System.out.println("DB connection failed");
             return;
         }
@@ -47,7 +47,7 @@ public class MySQLConnection {
             statement.setString(5, item.getUrl());
             statement.executeUpdate();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -123,7 +123,6 @@ public class MySQLConnection {
     }
 
 
-
     public Set<Item> getFavoriteItems(String userId) {
         if (conn == null) {
             System.err.println("DB connection failed");
@@ -140,13 +139,13 @@ public class MySQLConnection {
                 ResultSet rs = statement.executeQuery();
                 if (rs.next()) {
                     favoriteItems.add(new Item(rs.getString("item_id")
-                            ,rs.getString("name")
-                            ,rs.getString("address")
-                            ,rs.getString("image_url")
-                            ,rs.getString("url")
-                            ,null
+                            , rs.getString("name")
+                            , rs.getString("address")
+                            , rs.getString("image_url")
+                            , rs.getString("url")
+                            , null
                             , getKeywords(itemId)
-                            ,true));
+                            , true));
 
                 }
             }
