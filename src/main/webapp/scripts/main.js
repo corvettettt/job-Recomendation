@@ -1,4 +1,4 @@
-;(function () {
+(function () {
     // get all elements
     var oAvatar = document.getElementById('avatar'),
         oWelcomeMsg = document.getElementById('welcome-msg'),
@@ -284,8 +284,8 @@
     function initGeo(cb) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                    // lat = position.coords.latitude || lat;
-                    // lng = position.coords.longitude || lng;
+                    lat = position.coords.latitude || lat;
+                    lng = position.coords.longitude || lng;
                     cb();
                 },
                 function () {
